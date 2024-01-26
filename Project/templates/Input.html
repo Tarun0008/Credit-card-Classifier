@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>EagleEdgeFinance</title>
+
+  <!-- slider stylesheet -->
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/responsive.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/bootstrap.css') }}">
+</head>
+<style>
+  label{
+    display: block;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 500;
+}
+input{
+    display: block;
+    height: 50px;
+    width: 20%;
+    background-color: rgba(255,255,255,0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+}
+form *{
+    font-family: 'Poppins',sans-serif;
+    color:black;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+/*form{
+    
+    background-color: rgba(255,255,255,0.13);
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    padding: 50px 35px;
+}*/
+form h3{
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;
+}
+.input-container 
+{
+    display: flex;
+    flex-direction: row;
+    gap: 50px; 
+    margin-bottom: 10px;
+}
+  button{
+    margin-top: 50px;
+    width: 50%;
+    background-color: black;
+    color: #080710;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    justify-content: center;
+}
+.b 
+{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px; 
+}
+.b{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+
+}
+</style>
+<body>
+  {% if success_message %}
+        <script>
+            alert("{{ success_message }}");
+        </script>
+    {% endif %}
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="index.html">
+            <span>
+              EagleEdgeFinance
+            </span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+              <ul class="navbar-nav  ">
+                <li class="nav-item ">
+                  <a class="nav-link" href="{{ url_for('index') }}">Home </a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="{{ url_for('Input') }}"> Input </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('Visualize') }}"> Visualize </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="https://app.powerbi.com/groups/6c1decdd-c5fc-41a9-a93a-61c809c336e0/reports/dfd6e7d0-0a78-4dbe-b45e-07a27011c167/ReportSection?experience=power-bi"> Dashboard </a>
+                </li>
+              </ul>
+              <div class="user_option">
+                <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
+                  <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+  </div>
+
+  <!-- about section -->
+
+  <section class="about_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Enter the Record
+        </h2>
+      </div>
+      <div class="box">
+        <div class="img-box">
+          <img src="images/about-img.png" alt="">
+        </div>
+        <div class="detail-box">
+          <form action="/submit" method="POST">
+            <br><br>
+            <div class="input-container">
+                <label for="CUST_ID">CUST_ID</label>
+                <input type="text" placeholder="CUST_ID" id="CUST_ID" name="CUST_ID">
+                <label for="BALANCE">BALANCE</label>
+                <input type="text" placeholder="BALANCE" id="BALANCE" name="BALANCE">
+                <label for="BALANCE_FREQUENCY">BALANCE FREQUENCY</label>
+                <input type="text" placeholder="BALANCE FREQUENCY" id="BALANCE_FREQUENCY" name="BALANCE_FREQUENCY">
+            </div>
+    
+            <div class="input-container">
+                <label for="PURCHASES">PURCHASES</label>
+                <input type="text" placeholder="PURCHASES" id="PURCHASES" name="PURCHASES">
+                <label for="ONEOFF_PURCHASES">ONEOFF PURCHASES</label>
+                <input type="text" placeholder="ONEOFF PURCHASES" id="ONEOFF_PURCHASES" name="ONEOFF_PURCHASES">
+                <label for="INSTALLMENTS_PURCHASES">INSTALLMENTS PURCHASES</label>
+                <input type="text" placeholder="INSTALLMENTS PURCHASES" id="INSTALLMENTS_PURCHASES" name="INSTALLMENTS_PURCHASES">
+            </div>
+    
+            <div class="input-container">
+                <label for="CASH_ADVANCE">CASH ADVANCE</label>
+                <input type="text" placeholder="CASH ADVANCE" id="CASH_ADVANCE" name="CASH_ADVANCE">
+                <label for="PURCHASES_FREQUENCY">PURCHASES FREQUENCY</label>
+                <input type="text" placeholder="PURCHASES FREQUENCY" id="PURCHASES_FREQUENCY" name="PURCHASES_FREQUENCY">
+                <label for="ONEOFF_PURCHASES_FREQUENCY">ONEOFF PURCHASES FREQUENCY</label>
+                <input type="text" placeholder="ONEOFF PURCHASES FREQUENCY" id="ONEOFF_PURCHASES_FREQUENCY" name="ONEOFF_PURCHASES_FREQUENCY">
+            </div>
+    
+            <div class="input-container">
+                <label for="PURCHASES_INSTALLMENTS_FREQUENCY">PURCHASES INSTALLMENTS FREQUENCY</label>
+                <input type="text" placeholder="PURCHASES INSTALLMENTS FREQUENCY" id="PURCHASES_INSTALLMENTS_FREQUENCY" name="PURCHASES_INSTALLMENTS_FREQUENCY">
+                <label for="CASH_ADVANCE_FREQUENCY">CASH ADVANCE FREQUENCY</label>
+                <input type="text" placeholder="CASH ADVANCE FREQUENCY" id="CASH_ADVANCE_FREQUENCY" name="CASH_ADVANCE_FREQUENCY">
+                <label for="CASH_ADVANCE_TRX">CASH ADVANCE TRX</label>
+                <input type="text" placeholder="CASH ADVANCE TRX" id="CASH_ADVANCE_TRX" name="CASH_ADVANCE_TRX">
+            </div>
+    
+            <div class="input-container">
+                <label for="PURCHASES_TRX">PURCHASES TRX</label>
+                <input type="text" placeholder="PURCHASES TRX" id="PURCHASES_TRX" name="PURCHASES_TRX">
+                <label for="CREDIT_LIMIT">CREDIT LIMIT</label>
+                <input type="text" placeholder="CREDIT LIMIT" id="CREDIT_LIMIT" name="CREDIT_LIMIT">
+                <label for="PAYMENTS">PAYMENTS</label>
+                <input type="text" placeholder="PAYMENTS" id="PAYMENTS" name="PAYMENTS">
+            </div>
+    
+            <div class="input-container">
+                <label for="MINIMUM_PAYMENTS">MINIMUM PAYMENTS</label>
+                <input type="text" placeholder="MINIMUM PAYMENTS" id="MINIMUM_PAYMENTS" name="MINIMUM_PAYMENTS">
+                <label for="PRC_FULL_PAYMENT">PRC FULL PAYMENT</label>
+                <input type="text" placeholder="PRC FULL PAYMENT" id="PRC_FULL_PAYMENT" name="PRC_FULL_PAYMENT">
+                <label for="TENURE">TENURE</label>
+                <input type="text" placeholder="TENURE" id="TENURE" name="TENURE">
+            </div>
+            <div class="btn-box">
+              <input type="submit" value="Submit" class="l">
+            </div>
+        </form>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end about section -->
+
+  <!-- info section -->
+  <section class="info_section layout_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="info_contact">
+            <div class="info_logo">
+              <a href="index.html">
+                <span>
+                  Eagle Edge Finance
+                </span>
+              </a>
+            </div>
+            <h5>
+              Contact Us
+            </h5>
+            <div>
+              <div class="img-box">
+                <img src="../static/images/location.png" width="18px" alt="" />
+              </div>
+              <p>
+               Coimbatore
+              </p>
+            </div>
+            <div>
+              <div class="img-box">
+                <img src="../static/images/phone.png" width="18px" alt="" />
+              </div>
+              <p>
+                8870881201
+              </p>
+            </div>
+            <div>
+              <div class="img-box">
+                <img src="../static/images/envelope.png" width="18px" alt="" />
+              </div>
+              <p>
+                EagleEdgeFinance@gmail.com
+              </p>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-md-3">
+          <div class="info_form ">
+            <h5>
+              Newsletter
+            </h5>
+            <form action="">
+              <input type="email" placeholder="Enter your email" />
+              <style>
+                /* Style for the button */
+                .button {
+                  display: inline-block;
+                  padding: 10px 20px;
+                  font-size: 16px;
+                  text-align: center;
+                  text-decoration: none;
+                  cursor: pointer;
+                  border: 1px solid #007BFF; /* Border color */
+                  color: #007BFF; /* Text color */
+                  border-radius: 5px; /* Rounded corners */
+                  background-color: #fff; /* Background color */
+                }
+              </style>
+              
+              <!-- Button with a mailto link -->
+              <button class="button">
+                <a href="mailto:tarunrajasekar1@gmail.com.com?subject=Subject%20Here" style="color: inherit; text-decoration: none;">Contact Us</a>
+              </button>
+              
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end info_section -->
+
+  <!-- footer section -->
+  <section class="container-fluid footer_section">
+    <p>
+      &copy; 2019 All Rights Reserved By
+      <a href="https://html.design/">Free Html Templates</a>
+    </p>
+  </section>
+  <!-- footer section -->
+
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+  </script>
+  <!-- owl carousel script 
+    -->
+  <script type="text/javascript">
+    $(".owl-carousel").owlCarousel({
+      loop: true,
+      margin: 0,
+      navText: [],
+      center: true,
+      autoplay: true,
+      autoplayHoverPause: true,
+      responsive: {
+        0: {
+          items: 1
+        },
+        1000: {
+          items: 3
+        }
+      }
+    });
+  </script>
+  <!-- end owl carousel script -->
+</body>
+
+</html>
